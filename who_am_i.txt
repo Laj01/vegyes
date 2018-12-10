@@ -1,0 +1,117 @@
+1) A három leggyakoribb memóriafoglalási stratégia, ami a dinamikus memóriakezelés allokációjánál kialakult a lyukak keresésére:
+Dynamic Storage-Allocation Problem:
+-First-fit: allokálja az elérhetõ legelsõ lyukat, ami elég nagy.
+-Best-fit: Allokálja az elérhetõ legkisebb lyukat, ami elég nagy, de ehhez végig kell nézni a teljes listát (kivéve, ha méret szerint sorba van rendezve), így jön létre a legkisebb "maradék" üres lyuk.
+-Worst-fit: allokálja a legnagyobb lyukat, szintén végig kell nézi ehhez a teljes listát, így jön létre a legnagyobb "maradék" üres lyuk.
+First-fit és Best-fit jobb allokáció, mint a Worst-fit, sebesség és tárhely optimailzáció szempontjából.
+
+2) Ismertesse hogy a memóriakezelés esetén a szegmentálás mit jelent, mik a leggyakoribb
+elemei, amik a programozói nézetben megjelennek:
+A memóriaszegmentálás egy memóriakezelési módszer, mely a számítógép memóriájának logikailag több címtérre, „szegmensekre” vagy „szekciókra” bontása. Egy szegmentált rendszerben egy memóriacímre való hivatkozás két részbõl áll, egy szegmenscímbõl és egy eltolási (offset-) címbõl, ami a szegmensen belül határozza meg a cím elhelyezkedését. Ilyen szegmenseket alkalmaznak a lefordított programok object fájljainak összelinkelésekor is, illetve amikor az összelinkelt programot betöltik a memóriába. Egy program, szegmensek egy csoportja, mint pl.: függvény, methódus, objektum, helyi-és globális-változók,stack tömb. A memóriaszegmensek a program természetes felépítésének megfelelõen alakulnak, így a szegmentálás a lapozási mûveletnél láthatóbb a programozó számára.
+
+3) Az operációs rendszerek szempontjából a védelem szerepe, és UNIX esetén milyeneket
+ismersz?:
+Op.-rendszereken belül a védelem fõ szerepe a programok, folyamatok, felhasználók hozzáférésének szabályozása a számítógép erõforrásaihoz ezzel biztosítva a számítógép konzisztens mûködését. A legerõsebb irányelv a "legkisebb privilégium" elve, ami kimondja, hogy a felhasználók/programok/folyamatok csak a lehetõ legkisebb hozzáférést kapják meg, ami a mûködésükhöz feltétlenül szükséges.
+UNIX-on belül használt:
+-Domain struktúra: az adott user ID-hez rendelt jogosultsági szint
+-Access Mátrix: egy jogosultságokat tartalmazó táblázat
+-ACL: Access Control List
+
+4) Miért van szükség a merevlemezek esetén ütemezési stratégiára?:
+Ha az Op.-rendszertõl a merevlemezre több I/O kérés érkezik egyidõben, akkor a lemez, egyszerre csak egyet tud kiszolgálni és a többi kérés addig sorban áll. Az ütemezési algoritmusok segítenek felgyorsítani a lemez mõködését. PL.:csökkentik az olvasókar mozgásának mértékét, a kar kevesebb területet jár be olvasás során -> gyorsabban végez az adott I/O mûvelettel.
+Ütemezési algoritmusok:
+FCFS: First Come First Seek, a legegyszerûbb, a beérkezés sorrendjében keres a lemez.
+SSTF: Shortes Seek Time First, az olvasófej aktuális pozíciójától számolva, a legkisebb pozicionálást igénylõ kérést olvassa be következõnek.
+SCAN: az olvasófej egy irányba halad, és az "útjába esõ" kéréseket olvasssa be, majd a lemez végét elérve elindul a fej a másik irányba és abban a sorrendben kezd el olvasni.
+C-SCAN:az olvasófej egy irányba halad, és az "útjába esõ" kéréseket olvasssa be, majd a lemez végét elérve azonnal visszaugrik a lemez elejére és ismét elindul ugyanabba az irányba, mint az elõbb.
+C-LOOK:az olvasófej egy irányba halad, és az "útjába esõ" kéréseket olvasssa be, de nem megy el a lemez végéig, hanem az adott útba esõ utolsó kérés után elindul a másik irányba.
+
+számoljuk meg, hogy hány felhasználó van jelenleg bejelentkezve!
+(egy felhasználó egyszer szerepeljen)
+who | cut -f1 -d' ' | sort | uniq | wc -l
+írassuk ki azon felhasználók nevét (és csak azt), akik jelenleg futtatnak processeket!
+w -h | sed 's/\s\s*/ /g' | cut -f1 -d' ' | sort | uniq
+írassuk ki a legutoljára módosított 4 állomány nevét!
+ls -ltc | sed 's/\s\s*/ /g' | cut -f9 -d' ' | head -n 5 | tail -n 4
+VAGY 
+legrégebben módosított
+ls -ltc | sed 's/\s\s*/ /g' | tail -n 4 | cut -f9 -d' '
+hány különféle shell létezik a passwd-ben?
+cat /etc/passwd | cut -f7 -d':' | sort | uniq | wc -l
+hány olyan (nem csak aktuálisan belépett) felhasználó van a rendszerben, akinek a login shell-je nem bash?
+cat /etc/passwd | grep '/bin/bash'  -v | wc -l
+VAGY
+hány olyan van, akinek bash
+cat /etc/passwd | grep '/bin/bash' | wc -l
+(a -v kapcsoló az invertálást jelenti)
+a home könytárad tartalmáról minden hétfõ 10kor csinálj biztonsági mentést!
+crontab -e
+ott a megadott séma, szóval csak le kell másolni és a parancsot át kell írni a nekünk megfelelõre.
+0 10 * * 1 tar -zcf /var/backups/home.tgz /home/
+VAGY
+hétfõ 10kor törölje a home könyvtár alatt lévõ Core/core nevû fájlt
+0 10 * * 1 rm -f ~/Core/core
+VAGY
+csak egyszer csináljon valamit (szerintem az elõzõt -rm- is így kéne inkább megoldani, kivéve ha direkt kéri az ismétlõdést, mert akkor az elõzõ megoldás él!)
+HA az “at” csomag le van szedve, akkor tudjuk így csinálni.
+ellenõrizzük: at -V
+Ha megkaptuk a verziószámot( nem csak azt, hogy nem létezik a csomag, menj és szedd le), akkor haladhatunk tovább.
+Nézzük meg az “at” manuálját a további lehetõségekért.
+hétfõ 10-kor törölje az asd.txt-t a home könyvtárból.
+at 10:00 mon
+ekkor elõugrik majd egy prompt, amely így fog kinézni :  at>
+Írjuk be az utasításainkat.
+rm -f ~/asd.txt
+echo “Kitöröltem az asd.txt fájlt.” | tee -a log.txt
+nyomjunk ctrl+d-t , amivel a fájlvége (EOF) jelet küldjük el.
+az ütemezés kész, nézzük meg az “atq” parancs beütésével.
+Látható, hogy raktam bele egy pluszt. Nem csak abba bash-ba íratom ki a visszajelzést, de egy logfileba is.
+helyette itt van (ami egyébként a következõ feladat is), ami a legtöbb hardlinkkel rendelkezik.
+ls -l | sed 's/\s\s*/ /g' | cut -f2,9 -d' ' | sort -nr | head -n 2 | tail -n 1 | cut -f2 -d' '
+a hardlink fogalma és létrehozása
+írasd ki az aktuális könyvtárban legtöbb hard linkkel rendelkezõ fájl nevét!
+
+megoldás:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+HA BENNE LENNE
+A softlinket a windowsos parancsikonokhoz tudnám hasonlítani. Létrehozunk egy új fájlt, ami mutat az eredeti fájl HELYÉRE. A parancsikon (soft link) indításakor, az meghívja az eredeti fájlt. Nem tartalmazza az eredeti fájl semmi tulajdonságát, csak ezt a mutatót. Szakmai nyelven: létrehozunk egy új fájlt egy új indexel (inode), ami mutat az eredeti fájlra, amelynek különbözõ az inodeja.
+ln -s parancsal hozzuk õket létre.
+Softlinket akkor használunk, ha :
+-partíciókon (vagy fájlrendszereken) keresztül akarunk linkelni.
+-mappát akarunk linkelni(hardlinkel nem lehet).
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A hardlink ezzel szemben nem új fájl, mert az indexe nem lesz eltérõ.
+hardlink létrehozása : ln parancs
+Hardlinket akkor használunk, ha:
+- helytakarékosak akarunk lenni, vagy partíción belül linkelünk
+- ha a gyorsaság szempont ( nem kell mutatókkal lassítani az eljárást, mert alapból az eredeti fájlra mutat )
+- ha a fájl helyét gyakran módosítjuk. (az index sosem változik, és a hardlink erre mutat, míg a softlink csak a helyre)
+- ha szempont a biztonság. Hardlinkek esetén a fájl addig nem törlõdik, amíg van rá mutató link.
+PART 2
+ls -l | sed 's/\s\s*/ /g' | cut -f2,9 -d' ' | sort -nr | head -n 2 | tail -n 1 | cut -f2 -d' 'Rendezd a hardlinkek száma szerint a fájlokat.
+ls -l | sed 's/\s\s*/ /g' | cut -f2,9 -d' ' | sort -nr | tail -n+2 | colrm 1 2
+írj egy olyan utasítást, ami kilistázza az aktuális könyvtárból azon könyvtárak nevét, amelyek 2db (angol abc a -z, A-Z) betûre végzõdnek.
+ls -l | grep ^"d" | sed 's/\s\s*/ /g' | cut -f9 -d' ' | grep "[a-zA-Z][a-zA-Z]"$
+legyen a feladat ugyanaz, csak azzal kezdõdjenek:
+ls -l | grep ^"d" | sed 's/\s\s*/ /g' | cut -f9 -d' ' | grep ^"[a-zA-Z][a-zA-Z]"
+Írassa ki az összes daemon folyamat nevét
+ps aux | sed 's/\s\s*/ /g' | cut -f7,11 -d' ' | grep ^"?" | colrm 1 2
+(Ha valaki cifrázni akarja, akkor leveheti az elérési utat egy szimpla cuttal. Ekkor tényleg csak a név van ott, de szerintem ez ebben a formában is tökéletes.)
+írj egy olyan utasítást, ami kilistázza az aktuális könyvtárból azon könyvtárak nevét, amelyek 2db (angol abc a -z, A-Z) betûre végzõdnek és 0-9 betûvel kezdõdnek. 
+ls -l | grep ^"d" | sed 's/\s\s*/ /g' | cut -f9 -d' ' |grep ^"[0-9]" | grep "[a-zA-Z][a-zA-Z]"$
+Hány olyan felhasználó van (nem csak a userek), akiknek a daemon szerepel a megjegyzésükben.
+cat /etc/passwd | cut -f5 -d':' | grep daemon | wc -l
+Hogyan öljük meg zombi folyamatokat? SEGÍTSÉG (megoldottam , de már még egyszer nem tudnám :D)
+Mi a feladat megállításának parancsa [NEM BILLENTYÛKOMBINÁCIÓJA] ? SEGÍTSÉG
+Hogyan hozunk elõtérbe egy folyamatot, amely nem most lett háttérbe rakva?
+jobs 
+megkeressük az elõtérbe hozandó feladat számát
+fg %jobszám
+Minden hétfõn töröld ki a core/ Core-t
+menj feljebb!
+Hány olyan felhasználó van, akinek nem bash a shellje? 
+menj feljebb!
+Írasd ki , hogy a bejelentkezett felhasználók hány aktív processel rendelkeznek!
+w -h | sed 's/\s\s*/ /g' | cut -f1 -d' ' | uniq -c
+Írasd ki, hogy a bejelentkezett felhasználók honnan vannak belépve.
+w -h | sed 's/\s\s*/ /g' | cut -f1,3 -d' '| uniq
