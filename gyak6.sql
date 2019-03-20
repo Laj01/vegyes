@@ -429,3 +429,10 @@ select sum (ertek) / count(*)
         using (konyv_azon)
             where tema = 'sci-fi';
  
+ 
+ select avg(nvl (ertek, 0))--- nvl függvény not null value, ugyan az az eredményt, megadja, hogy a null értéket mennyivel számítsa be, behelyettesítünk (itt 0-val)
+    from konyvtar.konyv join KONYVTAR.konyvtari_konyv
+        using (konyv_azon)
+            where tema = 'sci-fi';
+            
+            ----írassuk ki az összes olyan szerzõ nevét, akik 5-nél kevesebb könyvet szereztek és azt is mellé, hogy hányat szereztek, azokat is akik nem szereztek semmi, náluk 0-t írjon ki
