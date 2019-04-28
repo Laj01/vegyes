@@ -1,0 +1,39 @@
+134-138: IO:
+
+Az I/O állományokat kezel. Ez lehet logikai vagy fizikai állomány.
+Funkció alapján lehet input (csak olvasni lehet), output (csak írni lehet), vagy input-output (olvasni és írni is lehet).
+Az adatátviteli mód a perifériák között lehet folyamatos (konverzióval), vagy bináris (nincs konverzió). megkülönböztetjük a formátumos, szerkesztett és listázott módú adatátvitelt.
+
+Formátumos: kötelezõ megadni a kezelni kívánt karakterszámot és típust.
+Szerkesztett: a kezelni kívánt adatokhoz egy maszkot kell megadni
+Listázott: a karaktersorozat már alpaból tartalmazza a tördelést meghatározó egyéb karaktereket
+
+Az állományokkal való mûveletek lépései: Deklaráció, összerendelés, állományok megnyitása, feldolgozás és lezárás.
+
+C-ben az I/O nem része a programnyelvnek. Könyvtári függvényeket kell alkalmazni.
+
+
+BME-s könyvbõl a C++ I/O fejezet 73-90:
+
+Szabványos adadtfolyamok
+
+A C nyelv alapértelmezett fájlleírói a standard input (stdin), a standard output (stdout) és a standard error (stderr). Az adatfolyamok nem mások, mint bájtok sorozatai.
+Az istream (csak írható) típus a bemenõ adatfolyam, míg az ostream (csak olvasható) a kimenõ adatfolyam. Az I/O használata csak az iostream behívása után lesz lehetséges. 
+
+C++-ban input beolvasása a cin-nel, output kiírása a cout-tal történik.
+Sortörésre használt parancs az endl.
+A beolvasás addig tart, amíg az adott típusra jellemzó tulajdonságú karaktert kap, vagy új sort esetleg állomány végét.
+Az ignore függvény figyelmen kívül hagyja a beolvasott karaktereket, a megadott paramétereknek megfelelõen.
+
+A rendszerhívások magas költsége miatt a karaktersorozatokat adatfolyam-bufferekben gyûjtjük össze és több kiírást egy rendszerhívással intéznek el. Buffer kiürítéséhez használjuk a cout.flush(); parancsot. 
+
+A standard error objektum (cerr) eredetileg nem bufferelt, de létezik bufferelt változata, a clog. Egy adatfolyam állapotát beállíthatjuk eofbit, failbit, badbit vagy goodbit konstansokkal. Egy adatfolyam hibabitjének beállítódása után, a következõ írási és olvasási mûveletek már nem tesznek semmit.
+
+Egyéb beolvasó tagfüggvények: getline (egész sort olvas be), read (bináris adatot ovlas be), unget (visszahelyezi az utolsó karaktert az adatfolyamba).
+
+A c++ standard könyvtárában található string osztály dinamikus méretõ karakterláncok tárolására alkalmas.
+
+Manipulátorok és formázás:
+
+A manipulátor egy speciális módosító objektum amit a ki- és bemeneti operátorok argumentumaként alkalmazunk.
+
