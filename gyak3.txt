@@ -1,0 +1,15 @@
+.\curl.exe https://www.youtube.com/ -c cookies.txt -o NUL -v
+.\curl.exe https://www.youtube.com/watch?v=pTBjHjRhx_Y -b cookies.txt -o NUL -v
+.\curl.exe https://api.github.com/user -v -u Laj01
+.\curl.exe https://api.github.com/user/repos -v -u Laj01
+http --session=.\youtube.json https://www.youtube.com/ -d -v
+http --session=.\youtube.json https://www.youtube.com/watch?v=pTBjHjRhx_Y -d -v
+http https://api.github.com/user -v -a Laj01
+
+pidacema@net1mail.com
+API key:  520488f794ea47289708ce633a9ad2e2
+
+
+httpbin.org
+
+.\curl.exe --get https://api.voicerss.org.................

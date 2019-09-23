@@ -1,0 +1,15 @@
+http http://ip-api.com/json
+http http://ip-api.com/json -v
+http http://ip-api.com/json -d  (download)
+http http://ip-api.com/json --download
+http http://www.w3.org/ --print Hh     (fejlécmezõk, felsõ, alsó)
+http http://www.w3.org/ --follow -d -o w3.html
+http http://www.w3.org/ -F -d -o w3.html (u.a.)
+http http://www.gnu.org/ Accept-Language:de -p Hh
+http http://www.youtube.com/ "User-Agent"   //deviceatlas.com/blog/list-of-user-agent-string
+http http://dbpedia.org/resource/Grumpy_Cat Accept:application/json -d
+http http://download.bbbike.org/osm/bbbike/Budapest/Budapest.osm.gz -d
+http http://download.bbbike.org/osm/bbbike/Budapest/Budapest.osm.gz -d -c -o Budapest.osm.gz (letöltés folytatása)
+Range:bites=0-99 //elsõ 100 karakter
+Range:bites=-100 //utolsó 100 kar.
+ http http://wttr.in
