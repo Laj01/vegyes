@@ -1,0 +1,25 @@
+learnxinyminutes.com
+
+http http://httpbin.org/anything title=\"The Big Bang Theory\" year:=2007 seasons:=12 ended:=true genres:='[\"comedy\", \"romance\"]' -v
+
+http http://httpbin.org/anything title="The Big Bang Theory" year:=2007 cast:='{\"Leonard Hofstadter\": \"Johnny Galecki\", \"Sheldon Cooper\": \"Jim Parsons\", \"Penny\": \"Kaley Cuoco\", \"Howard Wolowitz\": \"Simon Helberg\", \"Raj Koothrappali\": \"Kunal Nayyar\", \"Bernadette Rostenkowski\": \"Melissa Rauch\", \"Amy Farrah Fowler\": \"Mayim Bialik\"}' -v
+
+tinyurl.com/webtech0930
+
+http https://api.thetvdb.com/login apikey=MNKPCZYGJSBVMB5A userkey=9C9B7QU035TB25HJ username=laj01ehz -v -d
+
+http https://api.thetvdb.com/search/series "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Njk5MzQ1ODgsImlkIjoiIiwib3JpZ19pYXQiOjE1Njk4NDgxODgsInVzZXJpZCI6NTM5Mzg5LCJ1c2VybmFtZSI6ImxhajAxZWh6In0.WsdEFIPc8xxjBzEkFN5O_O0Mv8iGP9qr05SoukhNWe326W3VIo22Rh9nPrN5jI8m86teJD31YPKBRlEUHWnxUMqBULJMBTNnASyhb8bWeTHeeKboPGPUAmsMvbVqxjD-VCCVcQv9aw_P9tdTBl8WRqyD6tzAFbKLyDwbveH_xXdg6UzF4hBk04xmgxzP02L8lW2qb4aENC0iSGBe6oE5MEsVYPgih3oYU3oI9okpdoaV8BurXwwL1Vn24mLzQObMKCQeDb6OHLnkj3IcbRY9tSigA7bMs5HugayjeTC7fVxMLmhRfGJyBSptSEc-uQBo663U4AqFi4I8QWF61xwQPQ" name=="The Big Bang Theory" -v
+
+http --session=.\TheTVDB.json https://api.thetvdb.com/search/series "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Njk5MzQ1ODgsImlkIjoiIiwib3JpZ19pYXQiOjE1Njk4NDgxODgsInVzZXJpZCI6NTM5Mzg5LCJ1c2VybmFtZSI6ImxhajAxZWh6In0.WsdEFIPc8xxjBzEkFN5O_O0Mv8iGP9qr05SoukhNWe326W3VIo22Rh9nPrN5jI8m86teJD31YPKBRlEUHWnxUMqBULJMBTNnASyhb8bWeTHeeKboPGPUAmsMvbVqxjD-VCCVcQv9aw_P9tdTBl8WRqyD6tzAFbKLyDwbveH_xXdg6UzF4hBk04xmgxzP02L8lW2qb4aENC0iSGBe6oE5MEsVYPgih3oYU3oI9okpdoaV8BurXwwL1Vn24mLzQObMKCQeDb6OHLnkj3IcbRY9tSigA7bMs5HugayjeTC7fVxMLmhRfGJyBSptSEc-uQBo663U4AqFi4I8QWF61xwQPQ" name=="The Big Bang Theory" -v
+
+http --session=.\TheTVDB.json https://api.thetvdb.com/languages
+
+http --session=.\TheTVDB.json https://api.thetvdb.com/series/80379/filter keys==id,seriesName,firstAired,overview Accept-Language:hu
+
+http --session=.\TheTVDB.json https://api.thetvdb.com/series/80379/episodes/summary
+
+http --session=.\TheTVDB.json https://api.thetvdb.com/series/80379/episodes/query airedSeason==1 airedEpisode==1
+
+http --session=.\TheTVDB.json https://api.thetvdb.com/series/80379/images/query keyType==poster
+
+http --session=.\TheTVDB.json https://api.thetvdb.com/updated/query fromTime==1569621600 -v    (1569621600 = date -d 2019-09-28 +%s)
