@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT planets (planet*) >
+<!ELEMENT planet (name+, iauAbbrev, symbol) >
+<!ELEMENT name (#PCDATA) >
+<!ELEMENT iauAbbrev (#PCDATA) >
+<!ELEMENT symbol (#PCDATA) >
+<!ATTLIST name xml:lang NMTOKEN #REQUIRED >

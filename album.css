@@ -1,0 +1,40 @@
+album {
+    display: block;
+    border: thin solid black;
+    border-radius: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    box-shadow: 0.5em 0.5em 0.5em gray;
+    padding: 0.5em;
+}
+
+artist, album > title, year{
+    font-size: x-large;
+    margin-bottom: 0.5em;
+}
+
+year::before{
+    content: "(";
+}
+
+year::after{
+    content: ")";
+}
+
+artist::after{
+    content: " \2013";
+}
+
+tracks {
+    display: table;
+}
+
+track{
+    display: table-row;
+}
+
+length, track > title{
+    display: table-cell;
+    padding: 0.5em;
+}

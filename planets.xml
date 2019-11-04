@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE planets SYSTEM "planets.dtd">
+<?xml-stylesheet type="text/css" href="planets.css"?>
+<planets>
+    <planet>
+        <name xml:lang="en">Mercury</name>
+        <name xml:lang="hu">Merkúr</name>
+        <iauAbbrev>Me</iauAbbrev>
+        <symbol>&#x263F;</symbol>
+    </planet>
+    <planet>
+        <name xml:lang="en">Venus</name>
+        <name xml:lang="hu">Vénusz</name>
+        <iauAbbrev>V</iauAbbrev>
+        <symbol>&#x2640;</symbol>
+    </planet>
+    <planet>
+        <name xml:lang="en">Earth</name>
+        <name xml:lang="hu">Föld</name>
+        <iauAbbrev>E</iauAbbrev>
+        <symbol>&#x2641;</symbol>
+    </planet>
+    <planet>
+        <name xml:lang="en">Mars</name>
+        <name xml:lang="hu">Mars</name>
+        <iauAbbrev>Ma</iauAbbrev>
+        <symbol>&#x9794;</symbol>
+    </planet>
+</planets>
