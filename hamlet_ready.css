@@ -1,0 +1,92 @@
+* {
+    display: block;    
+}
+
+body{
+    padding: 1em;
+    border: thin solid black;
+    width: 50%;
+}
+
+body > nav > h1{
+    text-align: center;
+    font-weight: bold;
+    border-top: 0.125em solid black;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+}
+
+header{
+    font-variant: small-caps;
+    text-align: center;
+    letter-spacing: 0.25em;
+}
+
+header > p{
+    font-size: x-large;
+}
+
+header > h1{
+    font-size: xx-large;
+    margin-top: 0.5em;
+}
+
+section > section > h1{
+    text-align: center;
+    border: thin solid red;
+}
+
+body > section > h1{
+    text-align: center;
+    font-weight: bold;
+    border-top: 0.125em solid black;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+}
+
+section > div{
+    background-color: aliceblue;
+    border-top:  0.25em solid slateblue;
+    border-bottom: 0.25em solid silver; 
+    margin: 1em;
+    padding: 0.5em;
+}
+
+div.speaker{
+    font-size: large;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+div.line:hover{
+    background-color: lightcoral;
+    color: white;
+}
+
+span.stagedir,div.stagedir{
+    color: silver;
+    display: inline;
+    font-style: italic;
+}
+
+div.stagedir{
+    text-align: center;
+}
+
+div.stagedir::before {
+    content: "(";
+}
+
+div.stagedir::after{
+    content: ")";
+}
+
+span.stagedir::before {
+    content: "(";
+}
+
+span.stagedir::after{
+    content: ")";
+}
+
+
