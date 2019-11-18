@@ -1,0 +1,50 @@
+table {
+    border-collapse: collapse;
+    margin: 1em auto;
+}
+
+th {
+    font-weight: normal;
+}
+
+td, th {
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tbody > tr:first-child > td {
+    border-top: medium solid black;
+}
+
+tbody > tr:last-child > td {
+    border-bottom: medium solid black;
+}
+
+tbody > tr > td:first-of-type {
+    border-left: medium solid black;
+}
+
+tbody > tr > td:last-of-type  {
+    border-right: medium solid black;
+}
+
+/* páratlan sor páros cella*/
+tbody > tr:nth-child(odd) > td:nth-last-of-type(even){
+    background-color: lightgray;
+}
+
+/* páros sor páratlan cella */
+tbody > tr:nth-last-child(even) > td:nth-last-of-type(odd){
+    background-color:lightgray;
+}
+
+/* páratlan sor páratlan cella */
+tbody > tr:nth-last-child(odd) > td:nth-last-of-type(odd){
+    background-color: white;
+}
+
+tbody > tr:nth-last-child(even) > td:nth-last-of-type(even){
+    background-color: white;
+}

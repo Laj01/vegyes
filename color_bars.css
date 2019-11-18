@@ -1,0 +1,41 @@
+#b1 {
+    background-color: limegreen;
+}
+
+#b2 {
+    background-color: coral;
+}
+
+#b3 {
+    background-color: gold;
+}
+
+#b4 {
+    background-color: plum;
+}
+
+body, html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    margin: 0;
+}
+
+/*.column{
+    width: 25%;
+    float: left;
+    text-align: center;
+    line-height: 100vh;
+}*/
+/* vh: viewport-hight, az aktuális böngészőablak */
+/* flexbox.help */
+
+.column{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
